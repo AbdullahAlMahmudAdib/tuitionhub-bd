@@ -63,3 +63,4 @@ docs/*.blx.bib
 # Auth tokens
 github-auth.json
 .codegraph/
+.codegraph
