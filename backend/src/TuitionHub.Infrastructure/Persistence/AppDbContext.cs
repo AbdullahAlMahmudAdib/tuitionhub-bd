@@ -8,6 +8,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<User> Users => Set<User>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
     public DbSet<OtpCode> OtpCodes => Set<OtpCode>();
+    public DbSet<TutorProfile> TutorProfiles => Set<TutorProfile>();
+    public DbSet<TutorSubject> TutorSubjects => Set<TutorSubject>();
+    public DbSet<TutorQualification> TutorQualifications => Set<TutorQualification>();
+    public DbSet<GuardianProfile> GuardianProfiles => Set<GuardianProfile>();
+    public DbSet<Document> Documents => Set<Document>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -19,6 +24,16 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public override async Task<int> SaveChangesAsync(CancellationToken ct = default)
     {
         foreach (var entry in ChangeTracker.Entries<User>())
+        {
+            if (entry.State == EntityState.Modified)
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
+        }
+        foreach (var entry in ChangeTracker.Entries<TutorProfile>())
+        {
+            if (entry.State == EntityState.Modified)
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
+        }
+        foreach (var entry in ChangeTracker.Entries<GuardianProfile>())
         {
             if (entry.State == EntityState.Modified)
                 entry.Entity.UpdatedAt = DateTime.UtcNow;
