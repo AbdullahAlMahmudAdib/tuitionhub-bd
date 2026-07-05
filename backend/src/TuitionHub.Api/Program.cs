@@ -23,6 +23,9 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 // ── Repositories ──────────────────────────────────────────────────
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+builder.Services.AddScoped<ITutorProfileRepository, TutorProfileRepository>();
+builder.Services.AddScoped<IGuardianProfileRepository, GuardianProfileRepository>();
+builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 
 // ── MediatR + FluentValidation ────────────────────────────────────
 builder.Services.AddMediatR(cfg =>
