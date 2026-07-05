@@ -28,10 +28,10 @@ export default function RegisterPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 to-background px-4 py-12">
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-sm border-2 shadow-lg">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-2"><GraduationCap className="h-10 w-10 text-primary" /></div>
-          <CardTitle>Create Account</CardTitle>
+          <CardTitle className="text-2xl" style={{ fontFamily: '"Playfair Display", serif' }}>Create Account</CardTitle>
           <CardDescription>Join TuitionHub BD today</CardDescription>
         </CardHeader>
         <CardContent>

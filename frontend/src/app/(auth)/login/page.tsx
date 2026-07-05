@@ -25,10 +25,10 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 to-background px-4">
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-sm border-2 shadow-lg">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-2"><GraduationCap className="h-10 w-10 text-primary" /></div>
-          <CardTitle>Welcome Back</CardTitle>
+          <CardTitle className="text-2xl" style={{ fontFamily: '"Playfair Display", serif' }}>Welcome Back</CardTitle>
           <CardDescription>Sign in to your account</CardDescription>
         </CardHeader>
         <CardContent>

@@ -36,6 +36,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --font-sans: "Inter", ui-sans-serif, system-ui;
   --font-mono: ui-monospace, monospace;
+  --font-heading: "Playfair Display", serif;
 }
 
 :root {
@@ -45,28 +46,31 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.45 0.14 170);
+  --primary: oklch(0.40 0.15 170);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.965 0.01 170);
-  --secondary-foreground: oklch(0.35 0.12 170);
-  --muted: oklch(0.965 0.005 170);
-  --muted-foreground: oklch(0.556 0.02 170);
-  --accent: oklch(0.965 0.01 170);
-  --accent-foreground: oklch(0.35 0.12 170);
+  --secondary: oklch(0.965 0.015 170);
+  --secondary-foreground: oklch(0.30 0.12 170);
+  --muted: oklch(0.92 0.01 170);
+  --muted-foreground: oklch(0.50 0.025 170);
+  --accent: oklch(0.92 0.015 170);
+  --accent-foreground: oklch(0.30 0.12 170);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.922 0.01 170);
-  --input: oklch(0.922 0.01 170);
-  --ring: oklch(0.45 0.14 170);
+  --border: oklch(0.85 0.015 170);
+  --input: oklch(0.85 0.015 170);
+  --ring: oklch(0.40 0.15 170);
   --radius: 0.75rem;
-  --sidebar: oklch(0.25 0.08 170);
+  --section-dark: oklch(0.16 0.04 170);
+  --section-dark-foreground: oklch(0.95 0.01 170);
+  --section-dark-muted: oklch(0.55 0.03 170);
+  --sidebar: oklch(0.16 0.04 170);
   --sidebar-foreground: oklch(0.95 0.01 170);
-  --sidebar-primary: oklch(0.45 0.14 170);
+  --sidebar-primary: oklch(0.40 0.15 170);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.3 0.06 170);
+  --sidebar-accent: oklch(0.22 0.04 170);
   --sidebar-accent-foreground: oklch(0.95 0.01 170);
-  --sidebar-border: oklch(0.3 0.06 170);
-  --sidebar-ring: oklch(0.45 0.14 170);
+  --sidebar-border: oklch(0.22 0.04 170);
+  --sidebar-ring: oklch(0.40 0.15 170);
 }
 
 @layer base {
@@ -77,5 +81,18 @@
     @apply bg-background text-foreground;
     font-family: "Inter", sans-serif;
     -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
