@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface AvatarProps {
   src?: string;
   name: string;
@@ -11,6 +13,13 @@ const sizeStyles: Record<string, string> = {
   md: "h-10 w-10 text-sm",
   lg: "h-12 w-12 text-base",
   xl: "h-16 w-16 text-xl",
+};
+
+const pixelSizes: Record<string, number> = {
+  sm: 32,
+  md: 40,
+  lg: 48,
+  xl: 64,
 };
 
 function getInitials(name: string): string {
@@ -41,9 +50,11 @@ export default function Avatar({ src, name, size = "md", online, className = "" 
   return (
     <div className={`relative shrink-0 ${className}`}>
       {src ? (
-        <img
+        <Image
           src={src}
           alt={name}
+          width={pixelSizes[size]}
+          height={pixelSizes[size]}
           className={`${sizeStyles[size]} rounded-full object-cover`}
         />
       ) : (
