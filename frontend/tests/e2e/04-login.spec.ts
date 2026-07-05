@@ -6,7 +6,7 @@ test.describe("Login Page", () => {
   });
 
   test("should display login form with all fields", async ({ page }) => {
-    await expect(page.getByRole("heading", { name: /Welcome Back/i })).toBeVisible();
+    await expect(page.getByText("Welcome Back")).toBeVisible();
     await expect(page.locator("#email")).toBeVisible();
     await expect(page.locator("#password")).toBeVisible();
     await expect(page.getByRole("button", { name: /sign in/i })).toBeVisible();

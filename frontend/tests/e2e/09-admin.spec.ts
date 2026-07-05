@@ -31,7 +31,7 @@ test.describe("Admin Verifications Page", () => {
 
   test("should display the admin verifications page heading", async ({ page }) => {
     await expect(page.getByRole("heading", { name: /Verification Queue/i })).toBeVisible();
-    await expect(page.getByText(/Review and approve tutor\/guardian profiles/i)).toBeVisible();
+    await expect(page.getByText(/Review and approve profiles/i)).toBeVisible();
   });
 
   test("should display empty state when no pending verifications", async ({ page }) => {

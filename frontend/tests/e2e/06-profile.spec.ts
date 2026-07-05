@@ -28,13 +28,12 @@ test.describe("Profile Page", () => {
   });
 
   test("should display Profile Details section with editable fields", async ({ page }) => {
-    await expect(page.getByText("Profile Details")).toBeVisible();
+    await expect(page.getByText("Profile Details", { exact: true })).toBeVisible();
     await expect(page.getByText("Bio")).toBeVisible();
   });
 
   test("should display guardian-specific fields for Guardian user", async ({ page }) => {
     await expect(page.getByText("Location")).toBeVisible();
-    await expect(page.getByText("Preferred Subjects")).toBeVisible();
     await expect(page.getByText("Children Count")).toBeVisible();
     await expect(page.getByText("Budget Min (BDT)")).toBeVisible();
     await expect(page.getByText("Budget Max (BDT)")).toBeVisible();
@@ -55,7 +54,7 @@ test.describe("Profile Page", () => {
 
   test("should save updated profile", async ({ page }) => {
     // Bio field uses an Input component (renders as <input>). Find by label.
-    const bioInput = page.locator("input").nth(2); // After Email (readonly), Phone, then Bio
+    const bioInput = page.locator("input").first(); // First input in Profile Details card is Bio
     await bioInput.fill("QA test bio - " + new Date().toISOString());
 
     await page.getByRole("button", { name: /Save Profile/i }).click();

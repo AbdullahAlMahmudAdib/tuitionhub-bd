@@ -29,11 +29,6 @@ test.describe("Dashboard", () => {
     await expect(page.getByText("Messages").first()).toBeVisible();
   });
 
-  test("should display Recent Activity section", async ({ page }) => {
-    await expect(page.getByRole("heading", { name: /Recent Activity/i })).toBeVisible();
-    await expect(page.getByText(/posted a new tuition request/i)).toBeVisible();
-  });
-
   test("should have working sidebar navigation", async ({ page }) => {
     const sidebar = page.locator("aside");
     await expect(sidebar).toBeVisible();

@@ -37,7 +37,7 @@ test.describe("Landing Page", () => {
     const stats = page.locator("section").filter({ hasText: "500+" });
     await stats.scrollIntoViewIfNeeded();
     await expect(stats.getByText("500+").first()).toBeVisible();
-    await expect(stats.getByText("1000+").first()).toBeVisible();
+    await expect(stats.getByText("1,000+").first()).toBeVisible();
     await expect(stats.getByText("50+").first()).toBeVisible();
     await expect(stats.getByText("Qualified Tutors")).toBeVisible();
     await expect(stats.getByText("Students Matched")).toBeVisible();
@@ -45,10 +45,10 @@ test.describe("Landing Page", () => {
   });
 
   test("should display how-it-works section with 4 steps", async ({ page }) => {
-    const howItWorks = page.locator("section").filter({ hasText: "Create an Account" });
+    const howItWorks = page.locator("section").filter({ hasText: "Create Account" });
     await howItWorks.scrollIntoViewIfNeeded();
     await expect(howItWorks.getByRole("heading", { name: "How It Works" })).toBeVisible();
-    await expect(howItWorks.getByText("Create an Account")).toBeVisible();
+    await expect(howItWorks.getByText("Create Account")).toBeVisible();
     await expect(howItWorks.getByText("Find or Post")).toBeVisible();
     await expect(howItWorks.getByText("Connect & Verify")).toBeVisible();
     await expect(howItWorks.getByText("Start Learning")).toBeVisible();
@@ -88,7 +88,7 @@ test.describe("Landing Page", () => {
   });
 
   test("navbar Get Started button should navigate to /register", async ({ page }) => {
-    const getStarted = page.getByRole("link", { name: /get started/i });
+    const getStarted = page.getByRole("link", { name: /get started/i }).first();
     await expect(getStarted).toBeVisible();
     await getStarted.click();
     await expect(page).toHaveURL(/\/register/);

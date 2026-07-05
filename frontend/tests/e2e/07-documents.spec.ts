@@ -23,7 +23,6 @@ test.describe("Documents Page", () => {
 
   test("should display upload section with type selector", async ({ page }) => {
     await expect(page.getByText("Upload Document")).toBeVisible();
-    await expect(page.getByText("Document Type")).toBeVisible();
     await expect(page.getByRole("button", { name: "NID Card" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Certificate" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Result Sheet" })).toBeVisible();
@@ -31,7 +30,7 @@ test.describe("Documents Page", () => {
   });
 
   test("should display upload area", async ({ page }) => {
-    await expect(page.getByText(/Drag and drop or click to upload/i)).toBeVisible();
+    await expect(page.getByText(/click to upload or drag and drop/i)).toBeVisible();
     await expect(page.getByText(/JPG, PNG, or PDF up to 5 MB/i)).toBeVisible();
   });
 

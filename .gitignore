@@ -19,6 +19,9 @@ __pycache__/
 .venv/
 venv/
 
+# Test artifacts
+backend/src/TuitionHub.Api/uploads/
+
 # IDE
 .idea/
 .vscode/

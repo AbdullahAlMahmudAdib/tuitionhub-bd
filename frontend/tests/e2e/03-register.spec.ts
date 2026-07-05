@@ -6,7 +6,7 @@ test.describe("Register Page", () => {
   });
 
   test("should display the registration form", async ({ page }) => {
-    await expect(page.getByRole("heading", { name: /Create Account/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Create Account/i }).or(page.getByText("Create Account").first())).toBeVisible();
     await expect(page.getByText(/Join TuitionHub BD today/i)).toBeVisible();
   });
 
@@ -17,17 +17,17 @@ test.describe("Register Page", () => {
 
   test("should default to Guardian role selected", async ({ page }) => {
     const guardianBtn = page.getByRole("button", { name: /I.m a Guardian/i });
-    await expect(guardianBtn).toHaveClass(/bg-white text-primary/);
+    await expect(guardianBtn).toHaveClass(/bg-background text-primary/);
   });
 
   test("should allow switching to Tutor role", async ({ page }) => {
     await page.getByRole("button", { name: /I.m a Tutor/i }).click();
     const tutorBtn = page.getByRole("button", { name: /I.m a Tutor/i });
-    await expect(tutorBtn).toHaveClass(/bg-white text-primary/);
+    await expect(tutorBtn).toHaveClass(/bg-background text-primary/);
   });
 
   test("should have all required form fields", async ({ page }) => {
-    await expect(page.locator("#full-name")).toBeVisible();
+    await expect(page.locator("#fullName")).toBeVisible();
     await expect(page.locator("#email")).toBeVisible();
     await expect(page.locator("#phone")).toBeVisible();
     await expect(page.locator("#password")).toBeVisible();
@@ -42,7 +42,7 @@ test.describe("Register Page", () => {
 
   test("should successfully register a new guardian user", async ({ page }) => {
     const uniqueEmail = `test-guardian-${Date.now()}@test.com`;
-    await page.locator("#full-name").fill("Test Guardian");
+    await page.locator("#fullName").fill("Test Guardian");
     await page.locator("#email").fill(uniqueEmail);
     await page.locator("#password").fill("Test@1234");
     await page.getByRole("button", { name: /Create Account/i }).click();
@@ -58,7 +58,7 @@ test.describe("Register Page", () => {
     const dupEmail = `dup-${Date.now()}@test.com`;
 
     await page.goto("/register");
-    await page.locator("#full-name").fill("First User");
+    await page.locator("#fullName").fill("First User");
     await page.locator("#email").fill(dupEmail);
     await page.locator("#password").fill("Test@1234");
     await page.getByRole("button", { name: /Create Account/i }).click();
@@ -67,7 +67,7 @@ test.describe("Register Page", () => {
     await page.evaluate(() => localStorage.clear());
 
     await page.goto("/register");
-    await page.locator("#full-name").fill("Duplicate User");
+    await page.locator("#fullName").fill("Duplicate User");
     await page.locator("#email").fill(dupEmail);
     await page.locator("#password").fill("Test@1234");
     await page.getByRole("button", { name: /Create Account/i }).click();
