@@ -40,3 +40,26 @@ docker-data/
 # Build
 dist/
 build/
+
+# Codegraph
+.codegraph/
+
+# OpenCode
+.omo/
+
+# Design assets (large zips — keep locally, not in repo)
+Web Design/*.zip
+
+# LaTeX build artifacts
+docs/*.aux
+docs/*.out
+docs/*.toc
+docs/*.log
+docs/*.run.xml
+docs/*.blg
+docs/*.bbl
+docs/*.blx.bib
+
+# Auth tokens
+github-auth.json
+.codegraph/
