@@ -1,8 +1,8 @@
-fastapi==0.115.*
-uvicorn[standard]==0.34.*
-scikit-learn==1.7.*
-pydantic==2.11.*
-pandas==2.2.*
-numpy==2.2.*
-redis==6.0.*
-httpx==0.28.*
+fastapi>=0.115,<0.116
+uvicorn[standard]>=0.34,<0.35
+scikit-learn>=1.7,<2.0
+pydantic>=2.11,<3.0
+pandas[performance]>=2.2,<3.0
+numpy>=2.2,<3.0
+redis>=6.0,<7.0
+httpx>=0.28,<1.0
