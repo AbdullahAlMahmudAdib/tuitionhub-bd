@@ -20,4 +20,5 @@ public class User
 
     public ICollection<RefreshToken> RefreshTokens { get; set; } = [];
     public ICollection<OtpCode> OtpCodes { get; set; } = [];
+    public ICollection<Document> Documents { get; set; } = [];
 }

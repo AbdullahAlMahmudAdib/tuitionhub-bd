@@ -26,6 +26,8 @@ builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<ITutorProfileRepository, TutorProfileRepository>();
 builder.Services.AddScoped<IGuardianProfileRepository, GuardianProfileRepository>();
 builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IVerificationRepository, VerificationRepository>();
 
 // ── MediatR + FluentValidation ────────────────────────────────────
 builder.Services.AddMediatR(cfg =>
