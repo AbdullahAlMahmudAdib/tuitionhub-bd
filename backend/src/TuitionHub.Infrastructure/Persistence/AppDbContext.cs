@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TuitionHub.Domain.Entities;
+using TuitionHub.Domain.Enums;
 
 namespace TuitionHub.Infrastructure.Persistence;
 
@@ -18,6 +19,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     {
         builder.HasPostgresExtension("pgcrypto");
         builder.HasPostgresExtension("pg_trgm");
+        builder.HasPostgresEnum<UserRole>("user_role");
+        builder.HasPostgresEnum<OtpType>("otp_type");
         builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 
