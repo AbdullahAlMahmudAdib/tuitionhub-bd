@@ -1,4 +1,5 @@
 using MediatR;
+using TuitionHub.Domain.Enums;
 
 namespace TuitionHub.Application.Features.Auth.Commands.Register;
 
@@ -7,8 +8,9 @@ public sealed record RegisterCommand(
     string Password,
     string FullName,
     string? Phone,
-    string? DeviceInfo,
-    string? IpAddress) : IRequest<RegisterResult>;
+    UserRole Role = UserRole.Guardian,
+    string? DeviceInfo = null,
+    string? IpAddress = null) : IRequest<RegisterResult>;
 
 public sealed record RegisterResult(
     Guid UserId,

@@ -4,6 +4,7 @@ using NSubstitute;
 using TuitionHub.Application.Common.Interfaces;
 using TuitionHub.Application.Features.Auth.Commands.Register;
 using TuitionHub.Domain.Entities;
+using TuitionHub.Domain.Enums;
 using TuitionHub.Domain.Interfaces;
 
 namespace TuitionHub.UnitTests;
@@ -30,6 +31,7 @@ public sealed class RegisterHandlerTests
             "StrongP@ss1",
             "New User",
             "+8801712345678",
+            UserRole.Tutor,
             "Mozilla/5.0",
             "192.168.1.1");
 
@@ -76,7 +78,7 @@ public sealed class RegisterHandlerTests
             "existing@example.com",
             "StrongP@ss1",
             "Existing User",
-            null, null, null);
+            null, UserRole.Guardian, null, null);
 
         _userRepo.EmailExistsAsync(command.Email, default)
             .Returns(Task.FromResult(true));
@@ -102,7 +104,8 @@ public sealed class RegisterHandlerTests
         string email, string password, string fullName)
     {
         // Arrange
-        var command = new RegisterCommand(email, password, fullName, null, null, null);
+        var command = new RegisterCommand(email, password, fullName,
+            null, UserRole.Guardian, null, null);
         var validator = new RegisterCommandValidator();
 
         // Act

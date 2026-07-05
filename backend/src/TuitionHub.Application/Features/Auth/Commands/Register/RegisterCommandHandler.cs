@@ -25,7 +25,7 @@ public sealed class RegisterCommandHandler(
             FullName = command.FullName.Trim(),
             Phone = command.Phone?.Trim(),
             PasswordHash = authService.HashPassword(command.Password),
-            Role = UserRole.Guardian,
+            Role = command.Role,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
