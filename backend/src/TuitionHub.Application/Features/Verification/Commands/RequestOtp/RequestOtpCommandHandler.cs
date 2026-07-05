@@ -19,7 +19,7 @@ public sealed class RequestOtpCommandHandler(
 
         var code = new Random().Next(100000, 999999).ToString();
 
-        user.OtpCodes.Add(new OtpCode
+        var otp = new OtpCode
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -28,9 +28,9 @@ public sealed class RequestOtpCommandHandler(
             IsUsed = false,
             ExpiresAt = DateTime.UtcNow.AddMinutes(10),
             CreatedAt = DateTime.UtcNow
-        });
+        };
 
-        await userRepository.UpdateAsync(user, ct);
+        await unitOfWork.AddAsync(otp, ct);
         await unitOfWork.SaveChangesAsync(ct);
 
         // Dev: log OTP to console (SMS gateway integration in Phase 7)

@@ -28,6 +28,7 @@ export default function RegisterPage() {
         password,
         fullName,
         phone: phone || undefined,
+        role,
       });
       storeTokens(result);
       router.push("/dashboard");

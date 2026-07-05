@@ -39,9 +39,9 @@ public sealed class AuthController(ISender sender) : ControllerBase
             var result = await sender.Send(command, ct);
             return Results.Ok(result);
         }
-        catch (UnauthorizedAccessException)
+        catch (UnauthorizedAccessException ex)
         {
-            return Results.Unauthorized();
+            return Results.Json(new { error = ex.Message }, statusCode: 401);
         }
     }
 
@@ -56,9 +56,9 @@ public sealed class AuthController(ISender sender) : ControllerBase
             var result = await sender.Send(command, ct);
             return Results.Ok(result);
         }
-        catch (UnauthorizedAccessException)
+        catch (UnauthorizedAccessException ex)
         {
-            return Results.Unauthorized();
+            return Results.Json(new { error = ex.Message }, statusCode: 401);
         }
     }
 }

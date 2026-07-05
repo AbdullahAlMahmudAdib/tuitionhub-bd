@@ -58,8 +58,18 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddValidatorsFromAssembly(typeof(TuitionHub.Application.Features.Auth.Commands.Register.RegisterCommand).Assembly);
 
 // ── API ───────────────────────────────────────────────────────────
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(opts =>
+{
+    opts.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+});
 builder.Services.AddOpenApi();
+builder.Services.AddCors(opts =>
+{
+    opts.AddDefaultPolicy(p => p
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
 
 var app = builder.Build();
 
@@ -67,6 +77,29 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseCors();
+
+// Global error handler runs first so it catches exceptions from the whole pipeline
+app.Use(async (ctx, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (UnauthorizedAccessException ex)
+    {
+        ctx.Response.StatusCode = 401;
+        ctx.Response.ContentType = "application/json";
+        await ctx.Response.WriteAsJsonAsync(new { error = ex.Message });
+    }
+    catch (InvalidOperationException ex)
+    {
+        ctx.Response.StatusCode = 400;
+        ctx.Response.ContentType = "application/json";
+        await ctx.Response.WriteAsJsonAsync(new { error = ex.Message });
+    }
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
