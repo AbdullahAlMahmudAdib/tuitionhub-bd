@@ -28,8 +28,11 @@ async function request<T>(
   });
 
   if (!res.ok) {
-    const error = await res.json().catch(() => ({ error: res.statusText }));
-    throw new ApiError(res.status, error.error ?? "Request failed");
+    const body = await res.json().catch(() => ({ error: res.statusText }));
+    const message = body.details 
+      ? body.details.map((d: { field: string; message: string }) => d.message).join(". ")
+      : (body.error ?? "Request failed");
+    throw new ApiError(res.status, message);
   }
 
   return res.json();

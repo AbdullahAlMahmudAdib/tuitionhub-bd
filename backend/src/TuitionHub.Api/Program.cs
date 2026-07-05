@@ -87,6 +87,13 @@ app.Use(async (ctx, next) =>
     {
         await next();
     }
+    catch (FluentValidation.ValidationException ex)
+    {
+        ctx.Response.StatusCode = 400;
+        ctx.Response.ContentType = "application/json";
+        var errors = ex.Errors.Select(e => new { field = e.PropertyName, message = e.ErrorMessage });
+        await ctx.Response.WriteAsJsonAsync(new { error = "Validation failed", details = errors });
+    }
     catch (UnauthorizedAccessException ex)
     {
         ctx.Response.StatusCode = 401;
